@@ -44,7 +44,8 @@ public class ApiExceptionHandler {
     @ExceptionHandler(NegocioException.class)
     public ErrosDeValidacao handleNegocio(NegocioException ex ) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
-        ErrosDeValidacao erros = new ErrosDeValidacao(LocalDateTime.now(), ex.getMessage());
+        ErrosDeValidacao erros =
+                new ErrosDeValidacao(LocalDateTime.now(), ex.getMessage());
 
         return erros;
     }

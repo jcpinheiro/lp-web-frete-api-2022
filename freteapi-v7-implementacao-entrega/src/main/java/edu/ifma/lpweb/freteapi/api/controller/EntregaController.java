@@ -47,7 +47,7 @@ public class EntregaController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Entrega> busca(@PathVariable Integer id ) {
 		return buscaEntregaService.buscaPor(id )
-				.map( ResponseEntity::ok )
+				.map(ResponseEntity::ok)
 				.orElse( ResponseEntity.notFound().build() );
 	}
 	

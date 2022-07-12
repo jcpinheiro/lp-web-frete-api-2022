@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.DoubleStream;
 
 @Service
 public class BuscaEntregaService {
@@ -17,16 +18,16 @@ public class BuscaEntregaService {
 	
 	public Entrega buscar(Integer id) {
 		return entregaRepository.findById(id )
-				.orElseThrow(() -> new EntidadeNaoEncontradaException("Entrega não encontrada"));
+				.orElseThrow(()
+						-> new EntidadeNaoEncontradaException("Entrega não encontrada"));
 	}
 
 	public List<Entrega> todas() {
 		return entregaRepository.findAll();
 	}
 
+
 	public Optional<Entrega> buscaPor(Integer id) {
 		return entregaRepository.findById(id );
 	}
-
-
 }

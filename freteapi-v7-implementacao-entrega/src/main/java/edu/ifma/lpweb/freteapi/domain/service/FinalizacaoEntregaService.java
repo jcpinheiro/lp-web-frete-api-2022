@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class FinalizacaoEntregaService {
 
-	private EntregaRepository entregaRepository;
-	private BuscaEntregaService buscaEntregaService;
+	private final EntregaRepository entregaRepository;
+	private final BuscaEntregaService buscaEntregaService;
 
 	@Autowired
 	public FinalizacaoEntregaService(EntregaRepository entregaRepository,
@@ -18,6 +18,7 @@ public class FinalizacaoEntregaService {
 		this.entregaRepository = entregaRepository;
 		this.buscaEntregaService = buscaEntregaService;
 	}
+
 
 	@Transactional
 	public Entrega finalizar(Integer entregaId) {

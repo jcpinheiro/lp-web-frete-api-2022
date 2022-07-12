@@ -5,6 +5,7 @@ import edu.ifma.lpweb.freteapi.domain.exception.NegocioException;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -21,12 +22,14 @@ public class Entrega {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Destinatario destinatario;
 
-	@NotNull
+	@NotNull @Positive
 	private BigDecimal taxa;
-	
+
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	@Enumerated(EnumType.STRING)
 	private StatusEntrega status;
-	
+
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	private LocalDateTime dataPedido;
 
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
