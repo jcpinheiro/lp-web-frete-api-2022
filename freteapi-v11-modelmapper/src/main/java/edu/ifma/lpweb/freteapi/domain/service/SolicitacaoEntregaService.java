@@ -18,7 +18,7 @@ public class SolicitacaoEntregaService {
 
 	private final ClienteService clienteService;
 	private final EntregaRepository entregaRepository;
-	
+
 	@Transactional
 	public Entrega solicitar(Entrega entrega) {
 		Cliente cliente = clienteService

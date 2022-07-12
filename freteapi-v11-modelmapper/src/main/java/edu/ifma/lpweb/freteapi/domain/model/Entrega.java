@@ -31,14 +31,14 @@ public class Entrega {
 	@NotNull @Positive
 	private BigDecimal taxa;
 
-	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
+	//@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	@Enumerated(EnumType.STRING)
 	private StatusEntrega status;
 
-	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
+	//@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	private LocalDateTime dataPedido;
 
-	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
+	//@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	private LocalDateTime dataFinalizacao;
 
 	public void finalizar() {

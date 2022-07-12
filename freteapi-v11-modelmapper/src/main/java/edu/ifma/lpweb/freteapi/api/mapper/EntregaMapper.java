@@ -26,8 +26,8 @@ public class EntregaMapper {
 				.collect(Collectors.toList());
 	}
 	
-	public Entrega toEntity(EntregaRequest entregaInput) {
-		return modelMapper.map(entregaInput, Entrega.class);
+	public Entrega toEntity(EntregaRequest entregaRequest) {
+		return modelMapper.map(entregaRequest, Entrega.class);
 	}
 	
 }

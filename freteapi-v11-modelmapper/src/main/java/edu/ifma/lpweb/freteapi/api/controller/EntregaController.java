@@ -23,7 +23,7 @@ public class EntregaController {
 	private final SolicitacaoEntregaService solicitacaoEntregaService;
 	private final BuscaEntregaService buscaEntregaService;
 	private final FinalizacaoEntregaService finalizacaoEntregaService;
-	private final EntregaMapper entregaAssembler;
+	private final EntregaMapper entregaMapper;
 
 /*
 	@GetMapping
@@ -34,7 +34,8 @@ public class EntregaController {
 
 	@GetMapping
 	public List<EntregaResponse> listar() {
-		return entregaAssembler.toCollectionModel(buscaEntregaService.todas());
+
+		return entregaMapper.toCollectionModel(buscaEntregaService.todas());
 	}
 
 /*	@PostMapping
@@ -46,10 +47,10 @@ public class EntregaController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public EntregaResponse solicitar(@Valid @RequestBody EntregaRequest entregaInput) {
-		Entrega novaEntrega = entregaAssembler.toEntity(entregaInput);
+		Entrega novaEntrega = entregaMapper.toEntity(entregaInput);
 		Entrega entregaSolicitada = solicitacaoEntregaService.solicitar(novaEntrega);
 
-		return entregaAssembler.toModel(entregaSolicitada );
+		return entregaMapper.toModel(entregaSolicitada );
 	}
 
 /*	@GetMapping("/{id}")
@@ -62,7 +63,7 @@ public class EntregaController {
 	@GetMapping("/{id}")
 	public ResponseEntity<EntregaResponse> buscar(@PathVariable Integer id ) {
 		return buscaEntregaService.buscaPor(id )
-				.map(entrega -> ResponseEntity.ok(entregaAssembler.toModel(entrega)) )
+				.map(entrega -> ResponseEntity.ok(entregaMapper.toModel(entrega)) )
 				.orElse(ResponseEntity.notFound().build() );
 	}
 	

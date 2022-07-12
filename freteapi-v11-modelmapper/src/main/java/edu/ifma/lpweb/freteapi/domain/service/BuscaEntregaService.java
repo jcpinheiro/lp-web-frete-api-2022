@@ -18,8 +18,7 @@ public class BuscaEntregaService {
 	
 	public Entrega buscar(Integer id) {
 		return entregaRepository.findById(id )
-				.orElseThrow(()
-						-> new EntidadeNaoEncontradaException("Entrega não encontrada"));
+				.orElseThrow(() -> new EntidadeNaoEncontradaException("Entrega não encontrada"));
 	}
 
 	public List<Entrega> todas() {
