@@ -34,10 +34,11 @@ public class ClienteController {
         }
     }
 
+
     @GetMapping("/{id}")
     public ResponseEntity<Cliente> buscaPor(@PathVariable Integer id) {
        return service.buscaPor(id)
-               .map(ResponseEntity::ok)   //.map(cliente -> ResponseEntity.ok(cliente))
+               .map(ResponseEntity::ok )   //.map(cliente -> ResponseEntity.ok(cliente))
                .orElse(ResponseEntity.notFound().build());
     }
 

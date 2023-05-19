@@ -35,6 +35,11 @@ public class Entrega {
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	private LocalDateTime dataFinalizacao;
 
+
+	public String getSenha() {
+		return "senha_secreta";
+	}
+
 	public void finalizar() {
 		if (naoPodeSerFinalizada()) {
 			throw new NegocioException("Entrega não pode ser finalizada");

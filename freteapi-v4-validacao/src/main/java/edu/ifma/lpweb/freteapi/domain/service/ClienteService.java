@@ -19,6 +19,7 @@ public class ClienteService {
         this.repository = clienteRepository;
     }
 
+
     public List<Cliente> todos() {
         return repository.findAll();
     }

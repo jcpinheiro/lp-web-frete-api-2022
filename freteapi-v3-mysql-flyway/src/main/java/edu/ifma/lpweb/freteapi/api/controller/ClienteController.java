@@ -1,6 +1,5 @@
 package edu.ifma.lpweb.freteapi.api.controller;
 
-
 import edu.ifma.lpweb.freteapi.domain.model.Cliente;
 import edu.ifma.lpweb.freteapi.domain.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +34,6 @@ public class ClienteController {
     }
 
 //versao 01
-
-
     @GetMapping("/{id}")
     public Cliente buscaPor(@PathVariable Integer id ) {
         return service.buscaPor(id ).orElse(null);
