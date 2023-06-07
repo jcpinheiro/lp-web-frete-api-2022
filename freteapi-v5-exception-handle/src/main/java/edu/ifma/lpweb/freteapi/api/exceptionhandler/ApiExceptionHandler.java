@@ -1,6 +1,5 @@
 package edu.ifma.lpweb.freteapi.api.exceptionhandler;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
@@ -16,8 +15,11 @@ import java.util.List;
 @RestControllerAdvice
 public class ApiExceptionHandler {
 
-    @Autowired
-    private MessageSource messageSource;
+    private final MessageSource messageSource;
+
+    public ApiExceptionHandler(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -31,7 +33,7 @@ public class ApiExceptionHandler {
 
         fieldErrors.forEach(field -> {
             String mensagem = messageSource.getMessage(field, LocaleContextHolder.getLocale());
-            erros.adiciona(new Erro(field.getField(), mensagem) );
+            erros.adiciona( new Erro(field.getField(), mensagem) );
         });
 
         return erros;

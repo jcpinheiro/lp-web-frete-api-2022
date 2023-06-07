@@ -15,8 +15,7 @@ public class Entrega {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@NotNull
-	@ManyToOne
+	@NotNull @ManyToOne
 	private Cliente cliente;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)

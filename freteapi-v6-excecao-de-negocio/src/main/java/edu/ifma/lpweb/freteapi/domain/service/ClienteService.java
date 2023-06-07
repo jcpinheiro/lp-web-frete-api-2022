@@ -34,6 +34,7 @@ public class ClienteService {
 
     @Transactional
     public Cliente salva(Cliente cliente) {
+
         boolean emailEmUso = repository
                 .findByEmail(cliente.getEmail())
                 .stream()

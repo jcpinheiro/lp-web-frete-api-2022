@@ -22,7 +22,6 @@ public class Destinatario {
 	@NotBlank
 	private String numero;
 	
-	@NotBlank
 	private String complemento;
 	
 	@NotBlank

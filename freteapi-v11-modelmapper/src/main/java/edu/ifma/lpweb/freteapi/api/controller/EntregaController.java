@@ -2,7 +2,7 @@ package edu.ifma.lpweb.freteapi.api.controller;
 
 import edu.ifma.lpweb.freteapi.api.dto.input.EntregaRequest;
 import edu.ifma.lpweb.freteapi.api.dto.output.EntregaResponse;
-import edu.ifma.lpweb.freteapi.api.mapper.EntregaMapper;
+import edu.ifma.lpweb.freteapi.api.mapper.EntregaMapperAdapter;
 import edu.ifma.lpweb.freteapi.domain.model.Entrega;
 import edu.ifma.lpweb.freteapi.domain.service.BuscaEntregaService;
 import edu.ifma.lpweb.freteapi.domain.service.FinalizacaoEntregaService;
@@ -23,34 +23,21 @@ public class EntregaController {
 	private final SolicitacaoEntregaService solicitacaoEntregaService;
 	private final BuscaEntregaService buscaEntregaService;
 	private final FinalizacaoEntregaService finalizacaoEntregaService;
-	private final EntregaMapper entregaMapper;
+	private final EntregaMapperAdapter entregaMapperAdapter;
 
-/*
-	@GetMapping
-	public List<Entrega> listar() {
-		return buscaEntregaService.todas();
-	}
-*/
 
 	@GetMapping
 	public List<EntregaResponse> listar() {
-
-		return entregaMapper.toCollectionModel(buscaEntregaService.todas());
+		return entregaMapperAdapter.toCollectionModel(buscaEntregaService.todas());
 	}
-
-/*	@PostMapping
-	@ResponseStatus(HttpStatus.CREATED)
-	public Entrega solicitar(@Valid @RequestBody Entrega entrega ) {
-		return solicitacaoEntregaService.solicitar(entrega );
-	}*/
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public EntregaResponse solicitar(@Valid @RequestBody EntregaRequest entregaInput) {
-		Entrega novaEntrega = entregaMapper.toEntity(entregaInput);
+		Entrega novaEntrega = entregaMapperAdapter.toEntity(entregaInput);
 		Entrega entregaSolicitada = solicitacaoEntregaService.solicitar(novaEntrega);
 
-		return entregaMapper.toModel(entregaSolicitada );
+		return entregaMapperAdapter.toModelResponse(entregaSolicitada );
 	}
 
 /*	@GetMapping("/{id}")
@@ -63,7 +50,7 @@ public class EntregaController {
 	@GetMapping("/{id}")
 	public ResponseEntity<EntregaResponse> buscar(@PathVariable Integer id ) {
 		return buscaEntregaService.buscaPor(id )
-				.map(entrega -> ResponseEntity.ok(entregaMapper.toModel(entrega)) )
+				.map(entrega -> ResponseEntity.ok(entregaMapperAdapter.toModelResponse(entrega)) )
 				.orElse(ResponseEntity.notFound().build() );
 	}
 	

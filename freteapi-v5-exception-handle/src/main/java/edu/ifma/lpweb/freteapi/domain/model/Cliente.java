@@ -12,10 +12,11 @@ public class Cliente {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank @Size(min = 3, max = 60)
+    @NotBlank @Size(min = 2, max = 80)
     private String nome;
 
-    @NotBlank @Email @Size(max = 100)
+    @NotBlank @Email(message = "O e-mail está inválido")
+    @Size(max = 100)
     private String email;
 
     @Size(min = 8, max = 20)

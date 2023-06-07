@@ -39,7 +39,6 @@ public class ClienteController {
         return service.buscaPor(id ).orElse(null);
     }
 
-
     //versao 02
     @GetMapping("v2/{id}")
     public ResponseEntity<Cliente> buscaPorV2(@PathVariable Integer id) {
@@ -55,7 +54,7 @@ public class ClienteController {
     @GetMapping("v3/{id}")
     public ResponseEntity<Cliente> buscaPorV3(@PathVariable Integer id) {
        return service.buscaPor(id)
-               .map(ResponseEntity::ok)   //.map(cliente -> ResponseEntity.ok(cliente))
+               .map(ResponseEntity::ok )   //.map(cliente -> ResponseEntity.ok(cliente))
                .orElse(ResponseEntity.notFound().build());
 
     }
@@ -73,10 +72,10 @@ public class ClienteController {
     }
 
     @PostMapping("/v3")
-    public ResponseEntity<Cliente> cadastrov3(@RequestBody Cliente cliente,
-                                            UriComponentsBuilder builder) {
+    public ResponseEntity<Cliente> cadastrov3(@RequestBody Cliente cliente, UriComponentsBuilder builder ) {
 
         final Cliente clienteSalvo = service.salva(cliente);
+
         final URI uri = builder
                      .path("/clientes/{id}")
                      .buildAndExpand(clienteSalvo.getId()).toUri();
@@ -85,8 +84,8 @@ public class ClienteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Cliente> atualiza(@PathVariable Integer id,
-                                            @RequestBody Cliente cliente) {
+    public ResponseEntity<Cliente> atualiza(@PathVariable Integer id, @RequestBody Cliente cliente) {
+
         if (service.naoExisteClienteCom(id ) ) {
             return ResponseEntity.notFound().build();
 

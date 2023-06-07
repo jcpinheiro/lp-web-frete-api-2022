@@ -12,17 +12,17 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Component
-public class EntregaMapper {
+public class EntregaMapperAdapter {
 
 	private ModelMapper modelMapper;
 	
-	public EntregaResponse toModel(Entrega entrega) {
+	public EntregaResponse toModelResponse(Entrega entrega) {
 		return modelMapper.map(entrega, EntregaResponse.class);
 	}
 	
 	public List<EntregaResponse> toCollectionModel(List<Entrega> entregas) {
 		return entregas.stream()
-				.map(this::toModel)
+				.map(this::toModelResponse)
 				.collect(Collectors.toList());
 	}
 	
