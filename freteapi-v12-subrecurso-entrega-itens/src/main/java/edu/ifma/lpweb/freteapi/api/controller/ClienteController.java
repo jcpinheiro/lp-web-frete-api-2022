@@ -4,6 +4,7 @@ package edu.ifma.lpweb.freteapi.api.controller;
 import edu.ifma.lpweb.freteapi.domain.model.Cliente;
 import edu.ifma.lpweb.freteapi.domain.service.ClienteService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -42,8 +43,8 @@ public class ClienteController {
     }
 
     @GetMapping("/paginacao")
-    public Iterable<Cliente> lista(@RequestParam(required = false) String nome,
-                                   @PageableDefault(sort = "nome", direction = Sort.Direction.ASC, page = 0, size = 5)
+    public Page<Cliente> lista(@RequestParam(required = false) String nome,
+                               @PageableDefault(sort = "nome", direction = Sort.Direction.ASC, page = 0, size = 4)
                                    Pageable paginacao ) {
         if (nome == null) {
             return service.buscaPaginada(paginacao );

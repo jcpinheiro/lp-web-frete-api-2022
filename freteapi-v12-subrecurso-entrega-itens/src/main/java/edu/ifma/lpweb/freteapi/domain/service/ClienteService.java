@@ -57,7 +57,7 @@ public class ClienteService {
 
     }
 
-    public Page<Cliente> buscaPor(String nome, Pageable paginacao) {
-        return repository.findByNomeContaining(nome, paginacao );
+    public Page<Cliente> buscaPor(String nome, Pageable page) {
+        return repository.findByNomeContaining(nome, page );
     }
 }

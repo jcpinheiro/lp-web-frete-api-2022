@@ -1,5 +1,6 @@
 package edu.ifma.lpweb.freteapi.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import edu.ifma.lpweb.freteapi.domain.exception.NegocioException;
 import lombok.EqualsAndHashCode;
@@ -34,8 +35,7 @@ public class Entrega {
 	@NotNull @Positive
 	private BigDecimal taxa;
 
-	//@JsonIgnore
-    @OneToMany(mappedBy = "entrega", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "entrega", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Item> itens = new ArrayList<>();
 
 	@Enumerated(EnumType.STRING)

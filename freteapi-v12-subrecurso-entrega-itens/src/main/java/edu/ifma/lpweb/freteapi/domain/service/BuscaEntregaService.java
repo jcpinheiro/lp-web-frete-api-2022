@@ -31,6 +31,7 @@ public class BuscaEntregaService {
 
 
     public List<Item> buscarIntens(Integer entregaId) {
-		return this.buscar(entregaId ).getItens();
+		return this.buscar(entregaId )
+				   .getItens();
     }
 }

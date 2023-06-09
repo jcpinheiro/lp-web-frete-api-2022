@@ -16,8 +16,5 @@ public class EntregaResponse {
 	private DestinatarioResponse destinatario;
 	private BigDecimal taxa;
 	private StatusEntrega status;
-	private LocalDateTime dataPedido;
 
-	// private LocalDateTime dataFinalizacao;
-	
 }
